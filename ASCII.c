@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int Dec_to_Bin(int dec);
+char* Dec_to_Bin(int dec);
 /*char* StrRev(char* s);
 void swap(char* a, char* b);
 void swap(char* a, char* b){
@@ -19,7 +19,8 @@ char* StrRev(char* s){
   }
   return p;
 }*/
-int[] Dec_to_Bin(int dec){
+char* Dec_to_Bin(int dec){
+  char *res;
   int bin[8];
   int i = 7;
   while(dec > 0){
@@ -27,6 +28,11 @@ int[] Dec_to_Bin(int dec){
     dec = dec / 2;
     --i;
   }
+  for(int j = 0; j < sizeOf(bin[]); ++j){
+     sprintf(res, "%d", bin[j]);
+  }
+  return res;
+}
   /*char *str ="";
   char buf[1];
   while(num != 0){
@@ -60,7 +66,7 @@ if(fout == NULL){
 fprintf(fout, "%3s || %8s\n", "Dec", "Bin");
 
 for(int i = 127; i >= 0; --i){
-  int[] str = Dec_to_Bin(i);
-  fprintf(fout, "%03d || %8d\n", i, str);
+  char* str = Dec_to_Bin(i);
+  fprintf(fout, "%03d || %8s\n", i, str);
 }
 }
