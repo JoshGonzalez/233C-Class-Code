@@ -2,49 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* Dec_to_Bin(int dec);
-/*char* StrRev(char* s);
-void swap(char* a, char* b);
-void swap(char* a, char* b){
-  char temp = *a;
-  *a = *b;
-  *b = temp;
-}
-char* StrRev(char* s){
-  char * p = s;
-  size_t len = strlen(s);
-  char * t = &s[len - 1];
-  for(int i = 0; i < len/2; ++i){
-    swap(s++, t--);
-  }
-  return p;
-}*/
-char* Dec_to_Bin(int dec){
-  char *res;
+int* Dec_to_Bin(int dec);
+
+int* Dec_to_Bin(int dec){
   int bin[8];
-  int i = 7;
+  int i = 8;
   while(dec > 0){
-    bin[i] = n % 2;
+    bin[i] = dec % 2;
+    //printf("%d\n", bin[i]);
     dec = dec / 2;
+    //printf("%d\n", dec);
     --i;
   }
-  for(int j = 0; j < sizeOf(bin[]); ++j){
-     sprintf(res, "%d", bin[j]);
-  }
-  return res;
-}
-  /*char *str ="";
-  char buf[1];
-  while(num != 0){
-    int remainder = num % 2;
-    sprintf(buf, "%d", remainder);
-    str = str + buf[0]; //Get Remainder
-    num = num / 2; //Divide Quotient by 2
-  }
-  //char* ans = StrRev(str);
-  num = atoi(str);*/
+
   return bin;
 }
+
 int main(int argc, const char *argv[]){
 //Take in a number
 //Then produce a chart of every integer to said number in binary form
@@ -66,7 +39,11 @@ if(fout == NULL){
 fprintf(fout, "%3s || %8s\n", "Dec", "Bin");
 
 for(int i = 127; i >= 0; --i){
-  char* str = Dec_to_Bin(i);
-  fprintf(fout, "%03d || %8s\n", i, str);
+  int *num = Dec_to_Bin(i);
+  fprintf(fout, "%03d || ", i);
+  for(int i = sizeof(num) - 1; i >= 0; --i){
+  fprintf(fout, "%d", *(num + i));
+  }
+  fprintf(fout, "\n");
 }
 }
