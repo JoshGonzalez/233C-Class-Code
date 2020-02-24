@@ -80,10 +80,6 @@ int getop(char* s) {
   if (c != EOF) { ungetch_(c); }
   return NUMBER;      // return type is NUMBER, number stored in s
 }
-/*bool isNegative(double x){
-  if(x > 0){ return true;}
-  return false;
-}*/
 double pop(void) {
   if (sp == 0) { fprintf(stderr, "stack underflow\n");  return 0.0; }
   return val[--sp];
@@ -125,7 +121,7 @@ void rpn(void) {
         push(pop() / op2);
         break;
       case '%':
-        if ((op2 = pop()) == 0.0) { fprintf(stderr, "diveide by zero\n"); break;}
+        if ((op2 = pop()) == 0.0) { fprintf(stderr, "divide by zero\n"); break;}
         push(dmod(pop(), op2));
         break;
       default:      fprintf(stderr, "unknown command %s\n", s);  break;
